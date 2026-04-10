@@ -1,0 +1,237 @@
+.testimonials-section {
+  position: relative;
+  width: 100%;
+  background-color: #0a0a0a;
+  /* Instead of padding, we rely on sticky container for spacing */
+  box-sizing: border-box;
+  overflow: hidden; /* Or visible if it interferes with sticky */
+  height: 100vh; /* 设为 100vh，不再依赖滚动条长度 */
+}
+
+.testimonials-corner {
+  top: 30px;
+  /* Fix corner label relative to section, or we can make it sticky too. 
+     Usually sticky to viewport is better so it stays visible while scrolling. */
+  position: sticky;
+  z-index: 10;
+}
+
+/* Background Marquee - also needs to be sticky */
+.bg-marquee-container {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+}
+
+.bg-marquee-content {
+  flex-shrink: 0;
+  padding-right: 50px;
+  display: inline-block;
+  font-size: 110px;
+  font-weight: 800;
+  color: #1a1a1a;
+  animation: bg-marquee-scroll 120s linear infinite; /* 增加时间，大幅减慢滚动速度 */
+  transition: color 600ms ease-out; /* 添加颜色过渡动画 */
+}
+
+/* 刚进入板块但卡片还没出现时的纯白色状态 */
+.bg-marquee-container.highlight .bg-marquee-content {
+  color: #ffffff;
+}
+
+@keyframes bg-marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Sticky Wrapper for Content */
+.testimonials-sticky-wrapper {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* Let background events pass through if needed */
+  z-index: 2;
+}
+
+/* Content Area */
+.testimonials-content {
+  position: relative;
+  width: 100%;
+  max-width: 1000px; /* Increased to allow wider cards */
+  display: flex;
+  justify-content: center;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  box-sizing: border-box;
+  pointer-events: auto; /* Re-enable pointer events for cards */
+}
+
+.testimonial-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 860px; /* Increased from 720px */
+  height: 380px; /* Give wrapper a fixed height so absolute cards overlap perfectly */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonial-card {
+  position: absolute;
+  /* Glassmorphism Effect */
+  background: rgba(20, 20, 20, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  
+  border-radius: 16px;
+  padding: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  /* Transition for opacity and transform */
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+  /* Use CSS variable for unique rotation */
+  transform: translateY(0) rotate(var(--card-rotation, 0deg));
+  opacity: 1;
+}
+
+/* Card States */
+.testimonial-card.hidden-bottom {
+  opacity: 0;
+  transform: translateY(80px) rotate(var(--card-rotation, 0deg));
+  pointer-events: none;
+}
+
+.testimonial-card.active {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--card-rotation, 0deg));
+  pointer-events: auto;
+  z-index: 5;
+}
+
+.testimonial-card.hidden-top {
+  opacity: 0;
+  transform: translateY(-80px) rotate(var(--card-rotation, 0deg));
+  pointer-events: none;
+}
+
+/* --- Group State (Three cards showing together) --- */
+.testimonials-content.show-group .testimonial-card-wrapper {
+  /* Expand wrapper height to accommodate two rows */
+  height: 900px;
+}
+
+.testimonial-card.group-card {
+  opacity: 1;
+  pointer-events: auto;
+  /* 恢复原始卡片大小，不缩小 */
+  width: 100%;
+  max-width: 860px;
+  min-height: 280px;
+  padding: 50px;
+}
+
+/* First row, left */
+.testimonial-card.group-card-1 {
+  /* 使用 scale 和位移实现叠压，但不改变本身的 CSS width/padding */
+  transform: translate(-30%, -200px) rotate(0deg);
+  z-index: 5;
+}
+
+/* First row, right */
+.testimonial-card.group-card-2 {
+  transform: translate(30%, -100px) rotate(0deg); /* 向下移动 100px */
+  z-index: 8; /* 设置为最高层级，盖在第三张上面 */
+}
+
+/* Second row, center */
+.testimonial-card.group-card-3 {
+  transform: translate(0, 150px) rotate(0deg);
+  z-index: 7; /* 在第二张下方 */
+}
+
+/* 恢复文字原始大小，取消 group 模式下的缩小 */
+.testimonial-card.group-card .quote-mark {
+  font-size: 60px;
+  margin-bottom: 16px;
+}
+
+.testimonial-card.group-card .testimonial-text {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.testimonial-card.group-card .author-name {
+  font-size: 14px;
+}
+
+.testimonial-card.group-card .author-title {
+  font-size: 13px;
+}
+
+.quote-mark {
+  color: #00BFA5;
+  font-size: 60px;
+  line-height: 1;
+  font-family: Arial, sans-serif;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.testimonial-text {
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.8;
+  font-weight: 400;
+  margin: 0 0 24px 0;
+  flex: 1;
+}
+
+.testimonial-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.author-name {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.author-title {
+  color: #888888;
+  font-size: 13px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .testimonial-card {
+    /* Override CSS variable for rotation on mobile */
+    --card-rotation: 0deg !important;
+    padding: 30px 20px;
+    min-height: 240px;
+  }
+  .bg-marquee-content {
+    font-size: 70px;
+  }
+}

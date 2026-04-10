@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #0a0a0a; /* 匹配 Home 页面背景，防止白屏闪烁 */
+  color: #f5f5f0;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+
+/* 浮窗打开时的全局状态 */
+body.modal-open #root {
+  filter: blur(8px);
+  transform: scale(0.97);
+}
+
+body.modal-open .navbar {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Navbar default transition for fade in/out */
+.navbar {
+  transition: opacity 0.2s ease, background-color 0.3s ease;
+}
+
+/* 手机端取消缩放 */
+@media (max-width: 768px) {
+  body.modal-open #root {
+    transform: scale(1);
+  }
+}

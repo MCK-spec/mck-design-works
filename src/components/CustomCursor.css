@@ -1,0 +1,78 @@
+/* Global Cursor Reset */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+/* Ensure interactive elements also don't show default cursor since we handle hover manually */
+a, button, [role="button"], input, select, textarea, [tabindex] {
+  cursor: none !important;
+}
+
+/* --- Inner Cursor --- */
+.cursor-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #00BFA5;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2147483647; /* 使用最大 z-index 确保在最上方 */
+  /* Center the dot on the mouse coordinates */
+  margin-top: -6px;
+  margin-left: -6px;
+  transition: opacity 200ms ease;
+  will-change: transform;
+}
+
+.cursor-inner.hover {
+  opacity: 0;
+}
+
+/* --- Outer Cursor --- */
+.cursor-outer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid #00BFA5;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2147483646; /* 确保在最上方 */
+  /* Center the ring on the mouse coordinates */
+  margin-top: -20px;
+  margin-left: -20px;
+  transition: width 200ms ease, height 200ms ease, margin 200ms ease, background-color 200ms ease;
+  will-change: transform, width, height;
+}
+
+.cursor-outer.hover {
+  width: 64px;
+  height: 64px;
+  margin-top: -32px;
+  margin-left: -32px;
+  background-color: rgba(0, 191, 165, 0.15);
+}
+
+/* --- Canvas Trail --- */
+.cursor-canvas-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2147483645; /* Below cursors, above everything else, including modal */
+}
+
+/* --- Touch Devices Graceful Fallback --- */
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  a, button, [role="button"], input, select, textarea, [tabindex] {
+    cursor: pointer !important;
+  }
+}

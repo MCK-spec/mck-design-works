@@ -1,0 +1,203 @@
+.hero-section {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  box-sizing: border-box;
+  padding-top: 60px;
+  padding-bottom: 120px;
+  position: relative; /* 为左上角的角标提供定位参考 */
+}
+
+/* Corner Label Styles */
+.corner-label {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.corner-line {
+  display: inline-block;
+  width: 24px;
+  height: 1.5px;
+  background-color: #00BFA5; /* 青绿色 */
+}
+
+.corner-text {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #00BFA5; /* 青绿色 */
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  position: relative; /* 为绝对定位的图片提供参考系 */
+}
+
+.hero-title-group {
+  max-width: 900px;
+  position: relative;
+  z-index: 2; /* 确保文字在图片上方 */
+}
+
+.hero-bottom-area {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2; /* 确保文字在图片上方 */
+}
+
+.hero-subtitle-group {
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero-image-container {
+  position: absolute;
+  top: -150px; /* 根据需要调整图片在右侧的垂直位置，负值会向上提 */
+  right: 0;
+  width: 450px; /* 图片宽度 */
+  z-index: 1; /* 图片在底层 */
+  opacity: 0.8; /* 如果需要稍微融入背景，可以调整透明度 */
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+  display: block;
+}
+.hero-title {
+  margin: 0;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.hero-line {
+  display: block;
+}
+
+.hero-highlight {
+  color: #00BFA5; /* Teal color matching the reference image */
+}
+
+.hero-subtitle-group {
+  max-width: 520px; /* Changed from 550px to 520px as requested */
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Use specific margins instead of gap for precise control */
+}
+
+.hero-subtitle {
+  margin: 0;
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 1.9;
+  font-weight: 400;
+  opacity: 1; /* Request says "白色", keeping full opacity */
+}
+
+.hero-education {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-sub-label {
+  color: #00BFA5;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.hero-education-text {
+  margin: 0;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.hero-skills {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-tags-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hero-tag {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.hero-closing-text {
+  margin-top: 28px;
+  font-size: 15px;
+  color: #888888;
+  line-height: 1.6;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .corner-label {
+    left: 5vw; /* 移动端让角标也靠边一些，保持对齐 */
+  }
+
+  .hero-image-container {
+    position: relative;
+    top: 0;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 400px;
+    opacity: 1;
+  }
+
+  .hero-title {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 36px;
+  }
+  
+  .hero-content {
+    gap: 40px;
+  }
+  
+  .hero-subtitle {
+    font-size: 14px;
+  }
+}

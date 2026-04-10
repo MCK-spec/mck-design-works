@@ -1,0 +1,214 @@
+.experience-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  box-sizing: border-box;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  background-color: #0a0a0a; /* 背景纯黑，与上下板块无缝衔接 */
+}
+
+.experience-corner-label {
+  position: absolute;
+  top: 40px;
+  left: 32px; /* 与其他板块的 corner-label 保持一致的左侧间距 */
+  color: #00BFA5;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.experience-content-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.experience-title-group {
+  margin-bottom: 60px; /* 标题下方间距 60px */
+}
+
+.experience-title {
+  margin: 0;
+  font-size: 72px; /* 字号 72px 以上 */
+  font-weight: 800; /* 字重 800 */
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-align: left;
+}
+
+.experience-line {
+  display: block;
+}
+
+.experience-highlight {
+  color: #00BFA5; /* 青绿色 */
+}
+
+/* --- Accordion List Styles --- */
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.experience-item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #222222; /* 整行下方有 1px 细线分隔 */
+  transition: background-color 0.2s ease; /* 过渡 200ms */
+}
+
+.experience-item:hover {
+  background-color: #111111; /* hover 时背景轻微变色 */
+}
+
+.experience-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.experience-header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 16px; /* 左侧间距 16px */
+}
+
+.experience-company {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.experience-item.is-open .experience-company {
+  color: #00BFA5; /* 展开时左侧公司名变为青绿色 */
+}
+
+.experience-role {
+  color: #888888;
+  font-size: 14px;
+}
+
+.experience-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.experience-time {
+  color: #888888;
+  font-size: 13px;
+}
+
+.experience-arrow {
+  color: #00BFA5;
+  font-size: 18px;
+  transition: transform 0.3s ease; /* 展开箭头旋转过渡 300ms */
+  display: inline-block;
+}
+
+.experience-item.is-open .experience-arrow {
+  transform: rotate(180deg);
+}
+
+.experience-item-content-wrapper {
+  overflow: hidden;
+  transition: height 0.3s ease; /* 展开动画用 height transition */
+}
+
+.experience-item-content {
+  padding: 0 0 32px 0; /* 展开状态在收起行下方滑出内容区，内容区 padding 24px 0 32px 0 (top padding is handled by header's bottom padding visually) */
+  padding-top: 8px; /* Slight adjustment to balance visually */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.experience-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.experience-detail-line {
+  margin: 0;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.8; /* 行距 1.8 */
+}
+
+.experience-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.experience-tag {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 999px; /* 胶囊形 */
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .experience-section {
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  
+  .experience-corner-label {
+    left: 5vw;
+    top: 30px;
+  }
+  
+  .experience-title {
+    font-size: 40px; /* 手机端字号适当缩小 */
+  }
+
+  .experience-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .experience-header-left {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .experience-header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .experience-company {
+    font-size: 18px;
+  }
+
+  .experience-detail-line {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 375px) {
+  .experience-title {
+    font-size: 32px;
+  }
+}

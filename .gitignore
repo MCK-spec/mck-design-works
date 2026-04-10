@@ -1,0 +1,6 @@
+node_modules
+dist
+.env
+*.zip
+备份/
+【备份】/

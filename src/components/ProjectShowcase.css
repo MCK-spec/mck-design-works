@@ -1,0 +1,185 @@
+.project-showcase-section {
+  width: 100%;
+  background-color: #0a0a0a;
+  padding-top: 80px; /* 减小顶部内边距 */
+  padding-bottom: 80px; /* 减小底部内边距，缩短背景长度 */
+  padding-left: 10vw;
+  padding-right: 10vw;
+  box-sizing: border-box;
+  position: relative;
+  border-bottom: 1px solid #111; /* 给每个重复模块之间加一条极细的暗色分割线，防止视觉粘连 */
+}
+
+/* 如果不是第一个作品卡片，则减少顶部 padding */
+.project-showcase-section.not-first {
+  padding-top: 40px;
+}
+
+.project-showcase-section:last-child {
+  border-bottom: none;
+}
+
+.showcase-corner {
+  top: 30px; /* 随之稍微上调角标位置 */
+}
+
+.showcase-container {
+  display: flex;
+  width: 100%;
+  gap: 80px;
+  align-items: center;
+  margin-top: 40px; /* 减小容器的顶部外边距 */
+  padding: 40px; /* 添加内边距以便显示高亮边框和阴影 */
+  border-radius: 16px;
+  border: 1px solid transparent; /* 默认透明边框 */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 浮窗打开时，触发卡片的高亮效果 */
+.showcase-container.is-active {
+  border: 1px solid #00BFA5;
+  box-shadow: 0 0 20px rgba(0, 191, 165, 0.2);
+}
+
+/* --- LEFT SIDE: Single Image --- */
+.showcase-left {
+  flex: 1;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: auto; /* 移除固定的 min-height，让内容自然撑开，进一步缩短高度 */
+}
+
+.single-image-wrapper {
+  width: 100%;
+  max-width: 840px;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.showcase-left:hover .single-image-wrapper {
+  transform: translateY(-12px); /* 悬停浮起 */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05); /* 加深阴影 */
+}
+
+.showcase-single-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+
+/* --- RIGHT SIDE: Text Info --- */
+.showcase-right {
+  flex: 1;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.showcase-meta {
+  color: #00c4b6;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.showcase-title {
+  font-size: 40px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+}
+
+.showcase-description {
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 1.8;
+  max-width: 480px;
+  margin: 0 0 32px 0;
+  opacity: 0.9;
+}
+
+.showcase-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.showcase-details li {
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+.showcase-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.showcase-tag {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+
+/* --- Mobile Responsive --- */
+@media (max-width: 1024px) {
+  .showcase-container {
+    flex-direction: column;
+    gap: 100px;
+  }
+
+  .showcase-left, .showcase-right {
+    width: 100%;
+  }
+
+  .showcase-left {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-showcase-section {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  /* 移动端恢复简单的单图居中 */
+  .showcase-left {
+    min-height: auto;
+  }
+
+  .single-image-wrapper {
+    max-width: 100%;
+  }
+
+  .showcase-title {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .single-image-wrapper {
+    max-width: 960px;
+  }
+}
